@@ -1,0 +1,4 @@
+Date 25th|Oct|2024 
+==> Establishing a connection between php and MySQL from storing the registration and user data 
+==> created two tables register and login where register is main and login as the foreign key from register sql table id, email and password 
+==> IMP part is there is a connection b|w register and login using triggers keywords this is the place the entire project lies on the game changer I like this part....

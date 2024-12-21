@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Menu</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('D:/Wallpaper/IMG_8240.PNG');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            height: 80%;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 25%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li button {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar ul li button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content Styling */
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-content h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .pizza-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .pizza-box {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column; /* Change to column to stack items */
+            justify-content: space-between; /* Space between name and price */
+            align-items: center;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            padding: 10px; /* Add padding for better spacing */
+        }
+
+        .pizza-name {
+            flex-grow: 1; /* Allow name to take available space */
+        }
+
+        .pizza-price {
+            font-size: 1.2rem; /* Slightly larger font for price */
+            margin-top: 10px; /* Space between name and price */
+        }
+
+        .pizza-box:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+        }
+
+        .footer {
+            background-color: #3333334f;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Pizza Menu</h2>
+            <ul>
+                <li><button onclick="showContent('Italian')">Italian</button></li>
+                <li><button onclick="showContent('United States')">United States</button></li>
+                <li><button onclick="showContent('Indian')">Indian</button></li>
+                <li><button onclick="showContent('Japanese')">Japanese</button></li>
+                <li><button onclick="showContent('Turkish')">Turkish</button></li>
+                <li><button onclick="showContent('Australian')">Australian</button></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1 id="content-title">Italian Pizza</h1>
+            <div class="pizza-options" id="pizza-options">
+                <!-- Italian Pizza Options -->
+                <div class="pizza-box">
+                    <div class="pizza-name">Margherita</div>
+                    <div class="pizza-price">$10</div>
+                </div>
+                <div class="pizza-box">
+                    <div class="pizza-name">Pepperoni</div>
+                    <div class="pizza-price">$12</div>
+                </div>
+                <div class="pizza-box">
+                    <div class="pizza-name">Four Cheese</div>
+                    <div class="pizza-price">$15</div>
+                </div>
+                <div class="pizza-box">
+                    <div class="pizza-name">Vegetarian</div>
+                    <div class="pizza-price">$9</div>
+                </div>
+                <div class="pizza-box">
+                    <div class="pizza-name">Hawaiian</div>
+                    <div class="pizza-price">$11</div>
+                </div>
+                <div class="pizza-box">
+                    <div class="pizza-name">Meat Lover</div>
+                    <div class="pizza-price">$14</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2023 Pizza Paradise. All rights reserved.
+    </div>
+
+    <script>
+        function showContent(cuisine) {
+            const title = document.getElementById('content-title');
+            const pizzaOptions = document.getElementById('pizza-options');
+
+            title.textContent = cuisine + " Pizza";
+
+            // Clear existing pizza options
+            pizzaOptions.innerHTML = '';
+
+            // Define pizza options based on cuisine
+            const pizzas = {
+                Italian: [
+                    { name: 'Margherita', price: '$10' },
+                    { name: 'Pepperoni', price: '$12' },
+                    { name: 'Four Cheese', price: '$15' },
+                    { name: 'Vegetarian', price: '$9' },
+                    { name: 'Hawaiian', price: '$11' },
+                    { name: 'Meat Lover', price: '$14' }
+                ],
+                'United States': [
+                    { name: 'Chicago Deep Dish', price: '$18' },
+                    { name: 'New York Style', price: '$15' },
+                    { name: 'Buffalo Chicken', price: '$13' },
+                ],
+                Indian: [
+                    { name: 'Tandoori Chicken', price: '$12' },
+                    { name: 'Paneer Tikka', price: '$11' },
+                ],
+                Japanese: [
+                    { name: 'Teriyaki Chicken', price: '$13' },
+                    { name: 'Seafood Delight', price: '$15' },
+                ],
+                Turkish: [
+                    { name: 'Lahmacun', price: '$10' },
+                    { name: 'Pide', price: '$12' },
+                ],
+                Australian: [
+                    { name: 'Aussie BBQ', price: '$14' },
+                    { name: 'Vegemite Pizza', price: '$9' },
+                ]
+            };
+
+            // Populate pizza options based on selected cuisine
+            if (pizzas[cuisine]) {
+                pizzas[cuisine].forEach(pizza => {
+                    const pizzaBox = document.createElement('div');
+                    pizzaBox.className = 'pizza-box';
+                    pizzaBox.innerHTML = `
+                        <div class="pizza-name">${pizza.name}</div>
+                        <div class="pizza-price">${pizza.price}</div>
+                    `;
+                    pizzaOptions.appendChild(pizzaBox);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
